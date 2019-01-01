@@ -15,6 +15,7 @@ class App extends Component {
             Again Starting All Over...
             Why the collapse?
           </p>
+          
         </header>
       </div>
     );
