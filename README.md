@@ -3,22 +3,23 @@
 
 ###### TODO: 
 
-  * Navigation 
-  * FUN-PlugIns 
-  * Mining
-  - Get Gold
+  * [ ] Navigation 
+  * [ ] FUN-PlugIns 
+  * [ ] Mining
+  - [ ] Get Gold
 
-  * BLOG 
-  * Contact
-  * LinkedIn 
-  * GitHub 
-  * SKILLS  --> TECH STACK , Languages, etc. (ProgressBar)
+  * [ ] BLOG 
+  * [ ] Contact
+  * [ ] LinkedIn 
+  * [ ] GitHub 
+  * [ ] SKILLS  --> TECH STACK , Languages, etc. (ProgressBar)
 
-  * Play TIC TAC TOE 
-  * Play Tetris 
-  * Play Snake 
-  * Play Asteroids 
-  * Play GetRich 
+  * Games: 
+  * [ ] TIC TAC TOE
+  * [ ] Tetris 
+  * [ ] Snake 
+  * [ ] Asteroids 
+  * [ ] GetRich 
 
 ## You Can Visit It ONLINE
 
