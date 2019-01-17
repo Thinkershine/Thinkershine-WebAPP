@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import bootstrap from "bootstrap/dist/js/bootstrap";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/navBar";
+import NotFound from "./components/notFound";
 import "./App.css";
 
 const home = () => {
-  return <h1>Home</h1>;
+  return <h1>Thinkershine WebAPP</h1>;
 };
 
 const projects = () => {
@@ -60,19 +59,28 @@ const projects = () => {
   );
 };
 
+const skills = () => {
+  return <h1>Skills</h1>;
+};
+
+const games = () => {
+  return <h1>Games</h1>;
+};
+
+const contact = () => {
+  return <h1>Contact</h1>;
+};
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <NavBar />
         <Switch>
-          <Route path="/" component={home} />
+          <Route path="/" exact component={home} />
         </Switch>
         <header>
           <div className="container">
-            <h1>Thinkershine WebAPP</h1>
-
-            {/* Navigation */}
             {/* FUN-PlugIns */}
             {/* - Mining ?
             - Get Gold ?  */}
@@ -89,6 +97,9 @@ class App extends Component {
             {/* Play Asteroids */}
             {/* Play GetRich */}
             <Route path="/projects" component={projects} />
+            <Route path="/skills" component={skills} />
+            <Route path="/games" component={games} />
+            <Route path="/contact" component={contact} />
           </div>
         </header>
 
