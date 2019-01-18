@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Confetti from "../common/confetti";
 
 class Square extends React.Component {
   render() {
@@ -24,6 +25,9 @@ class Board extends Component {
     this.state.gameOver = false;
     this.state.gameStatus = "Current Player: " + this.state.currentPlayer;
     this.state.winner = "";
+    this.state.currentNumberOfMoves = 0;
+    this.state.maximumNumberOfMoves = 9;
+    this.state.winningMessage = "Gratulations!";
     this.handleClick = this.handleClick.bind(this);
     this.startPlaying = this.startPlaying.bind(this);
   }
@@ -42,7 +46,8 @@ class Board extends Component {
       const nextPlayer = this.state.currentPlayer === "O" ? "X" : "O";
       this.setState({ boardState, currentPlayer: nextPlayer }, () => {
         const gameStatus = "Current Player: " + this.state.currentPlayer;
-        this.setState({ gameStatus });
+        let movesCounter = this.state.currentNumberOfMoves + 1;
+        this.setState({ gameStatus, currentNumberOfMoves: movesCounter });
       });
     }
   }
@@ -50,7 +55,13 @@ class Board extends Component {
   checkWin(player) {
     const winners = this.winningConfigurations;
     const board = this.state.boardState;
-    console.log("CHECK WIN FOR ", player);
+
+    if (
+      this.state.currentNumberOfMoves + 1 ===
+      this.state.maximumNumberOfMoves
+    ) {
+      this.setState({ gameOver: true, winner: null });
+    }
 
     for (let i = 0; i < winners.length; i += 1) {
       if (
@@ -58,6 +69,7 @@ class Board extends Component {
         board[winners[i][1]] === player &&
         board[winners[i][2]] === player
       ) {
+        this.props.onWin();
         this.setState({
           gameOver: true,
           winner: player
@@ -87,17 +99,15 @@ class Board extends Component {
     );
   }
 
-  youWon() {
-    // Run Confetti :)
-  }
-
   startPlaying() {
-    console.log("AGAIN");
+    this.props.onStart();
+
     this.setState({
       boardState: [],
       currentPlayer: "X",
       gameOver: false,
       gameStatus: "Current Player: X",
+      currentNumberOfMoves: 0,
       winner: ""
     });
   }
@@ -109,9 +119,14 @@ class Board extends Component {
       <React.Fragment>
         <div>
           <div className="status">
-            {!this.state.gameOver
-              ? gameStatus
-              : "Winner is " + this.state.winner}
+            <h2>
+              {!this.state.gameOver
+                ? gameStatus
+                : this.state.winner === null
+                ? "It's a TIE!"
+                : "Winner is " + this.state.winner}
+            </h2>
+            <h3>Moves : {this.state.currentNumberOfMoves}</h3>
           </div>
           <div className="board-row">
             {this.renderSquare(boardState[0], 0)}
@@ -131,7 +146,7 @@ class Board extends Component {
         </div>
 
         <button onClick={this.startPlaying} className="btn btn-primary">
-          PLAY from START
+          START AGAIN
         </button>
       </React.Fragment>
     );
@@ -140,16 +155,34 @@ class Board extends Component {
 
 class TicTacToe extends Component {
   state = {};
+
+  constructor(props) {
+    super(props);
+
+    this.state = { winningMessage: "Gratulations!", playerWon: false };
+  }
+
+  onWin = () => {
+    this.setState({ playerWon: true });
+  };
+
+  onStart = () => {
+    this.setState({ playerWon: false });
+  };
+
   render() {
     return (
       <div className="tic-tac-toe-game">
         <div className="tic-tac-toe-game-board">
-          <Board onClick={this.startPlaying} />
+          <Board onWin={this.onWin} onStart={this.onStart} />
         </div>
         <div className="tic-tac-toe-game-info">
           <div>{/* status */}</div>
           <ol>{/* TODO */}</ol>
         </div>
+        {this.state.playerWon && (
+          <Confetti text={this.state.winningMessage} particlesAmount={200} />
+        )}
       </div>
     );
   }

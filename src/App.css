@@ -79,3 +79,14 @@ ul {
 .game-info {
   margin-left: 20px;
 }
+
+.hidden {
+  display: none;
+}
+
+.confetti {
+  z-index: -1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
