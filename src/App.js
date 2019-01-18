@@ -30,12 +30,20 @@ const projects = () => {
           <p>Tech : REACT</p>
           <p>
             URL:
-            <a href="https://riches.herokuapp.com" target="_blank">
+            <a
+              href="https://riches.herokuapp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GetRICH
             </a>
             <span>
               GitHub :
-              <a href="https://github.com/thinkershine/getrich" target="_blank">
+              <a
+                href="https://github.com/thinkershine/getrich"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Repository
               </a>
             </span>
@@ -109,6 +117,7 @@ class App extends Component {
             <Route path="/skills" component={skills} />
             <Route path="/games" component={games} />
             <Route path="/contact" component={contact} />
+            <Route path="/" component={NotFound} />
           </div>
         </header>
 
