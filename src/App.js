@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/navBar";
 import NotFound from "./components/notFound";
+import TicTacToe from "./components/games/ticTacToe";
 import "./App.css";
 
 const home = () => {
@@ -64,7 +65,15 @@ const skills = () => {
 };
 
 const games = () => {
-  return <h1>Games</h1>;
+  return (
+    <div className="games">
+      <h1>Games</h1>
+
+      <div>
+        <TicTacToe />
+      </div>
+    </div>
+  );
 };
 
 const contact = () => {
