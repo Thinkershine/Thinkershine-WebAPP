@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/navBar";
 import NotFound from "./components/notFound";
 import TicTacToe from "./components/games/ticTacToe";
+import Quotes from "./components/common/quotes";
 import "./App.css";
 
 const home = () => {
@@ -92,11 +93,16 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { width: 0, height: 0 };
+    this.state = {
+      width: 0,
+      height: 0
+    };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
+
   componentDidMount() {
     this.updateWindowDimensions();
+
     window.addEventListener("resize", this.updateWindowDimensions);
   }
 
@@ -105,40 +111,47 @@ class App extends Component {
   }
 
   updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
   }
 
   render() {
     return (
       <div className="App">
-        <NavBar />
-        <Switch>
-          <Route path="/" exact component={home} />
-        </Switch>
         <header>
-          <div className="container">
-            {/* FUN-PlugIns */}
-            {/* - Mining ?
+          <NavBar />
+        </header>
+
+        <div className="container">
+          {/* FUN-PlugIns */}
+          {/* - Mining ?
             - Get Gold ?  */}
 
-            {/* BLOG */}
-            {/* Contact */}
-            {/* LinkedIn */}
-            {/* GitHub */}
-            {/* SKILLS  --> TECH STACK , Languages, etc. */}
+          {/* BLOG */}
+          {/* Contact */}
+          {/* LinkedIn */}
+          {/* GitHub */}
+          {/* SKILLS  --> TECH STACK , Languages, etc. */}
 
-            {/* Play TIC TAC TOE */}
-            {/* Play Tetris */}
-            {/* Play Snake */}
-            {/* Play Asteroids */}
-            {/* Play GetRich */}
+          {/* Play TIC TAC TOE */}
+          {/* Play Tetris */}
+          {/* Play Snake */}
+          {/* Play Asteroids */}
+          {/* Play GetRich */}
+          <Switch>
             <Route path="/projects" component={projects} />
             <Route path="/skills" component={skills} />
             <Route path="/games" component={games} />
             <Route path="/contact" component={contact} />
+            <Route path="/" exact component={home} />
             <Route path="/" component={NotFound} />
+          </Switch>
+          <div id="widgets" className="row">
+            <Quotes />
           </div>
-        </header>
+        </div>
 
         <footer>
           <p>
