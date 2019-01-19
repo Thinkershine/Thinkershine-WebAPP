@@ -58,6 +58,34 @@ export const programmingQuotes = [
     quote: "Make it work, make it right, make it fast.",
     author: "Kent Beck",
     whoHeIs: ""
+  },
+  {
+    id: 10,
+    quote:
+      "What one programmer can do in one month, two programmers can do in two months.",
+    author: "Fred Brooks",
+    whoHeIs: "Author of Mythical Man-Month"
+  },
+  {
+    id: 11,
+    quote:
+      "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.",
+    author: "Patrik McKenzie",
+    whoHeIs: ""
+  },
+  {
+    id: 12,
+    quote:
+      "No one in the brief history of computing has ever written a piece of perfect software. It's unlikely that you'll be the first.",
+    author: "Andy Hunt",
+    whoHeIs: "Author of The Pragmatic Programmer"
+  },
+  {
+    id: 13,
+    quote:
+      "One of the best programming skills you can have is knowing when to walk away for awhile.",
+    author: "Oscar Godson",
+    whoHeIs: ""
   }
 ];
 
