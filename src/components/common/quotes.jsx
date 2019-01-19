@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  getProgrammingQuoteByIndex,
   getProgrammingQuotes,
   getRandomProgrammingQuote
 } from "./../../services/fakeQuoteService";
@@ -22,8 +21,6 @@ class Quotes extends Component {
   }
 
   componentDidMount() {
-    // const programmerQuotes = ;
-    console.log("QUOTES", this.state.programmerQuotes);
     const currentQuote = this.state.programmerQuotes[
       this.state.currentQuoteIndex
     ];
@@ -36,15 +33,14 @@ class Quotes extends Component {
   }
 
   prevQuote() {
-    console.log("Prev Quote");
     let newQuoteIndex = this.state.currentQuoteIndex;
-    newQuoteIndex -= 1;
-    console.log("NEW QUOTE INDEX", newQuoteIndex);
     if (newQuoteIndex === 0) {
       newQuoteIndex = this.state.programmerQuotes.length - 1;
+    } else {
+      newQuoteIndex -= 1;
     }
     const currentQuote = this.state.programmerQuotes[newQuoteIndex];
-    console.log("NEW QUOTE INDEX", newQuoteIndex);
+
     this.setState({
       currentQuoteIndex: newQuoteIndex,
       currentQuote
@@ -52,14 +48,13 @@ class Quotes extends Component {
   }
 
   nextQuote() {
-    console.log("Next Quote");
     let newQuoteIndex = this.state.currentQuoteIndex;
-    newQuoteIndex += 1;
-    console.log("Next Q Index", newQuoteIndex);
     if (newQuoteIndex === this.state.programmerQuotes.length - 1) {
       newQuoteIndex = 0;
+    } else {
+      newQuoteIndex += 1;
     }
-    console.log("Next Q Index", newQuoteIndex);
+
     const currentQuote = this.state.programmerQuotes[newQuoteIndex];
 
     this.setState({
@@ -69,11 +64,9 @@ class Quotes extends Component {
   }
 
   randomQuote() {
-    console.log("Random Quote");
     const currentQuote = getRandomProgrammingQuote();
     const newQuoteIndex = currentQuote.id;
 
-    console.log("New INDEX", newQuoteIndex);
     this.setState({ currentQuoteIndex: newQuoteIndex, currentQuote });
   }
 
@@ -94,7 +87,7 @@ class Quotes extends Component {
             {this.state.currentQuote.whoHeIs}
           </cite>
         </div>
-        <div style={{ float: "right", clear: "both" }}>
+        <div style={{ float: "right" }}>
           <button onClick={this.state.prevQuote} className="btn btn-success">
             {"<"}
           </button>

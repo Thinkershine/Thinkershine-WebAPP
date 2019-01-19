@@ -146,10 +146,10 @@ ul {
   color: goldenrod;
   font-size: 7em;
   font-weight: 700;
-  opacity: 0.5;
+  opacity: 0.2;
   position: absolute;
   top: -0.4em;
-  left: -0.05em;
+  left: -0.15em;
   text-shadow: none;
   z-index: -300;
 }
