@@ -106,6 +106,9 @@ ul {
 
 #quotes {
   background-color: rgba(218, 165, 32, 0.8);
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0;
 }
 
 .programmers-quotes {

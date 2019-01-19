@@ -5,11 +5,67 @@ export const programmingQuotes = [
       "We become authorities and experts in the practical and scientific spheres by so many separate acts and hours of work. If a person keeps faith fully busy each hour of the working day, he can count on waking up some morning to find himself one of the competent ones of his generation.",
     author: "William James",
     whoHeIs: "American Philisopher"
+  },
+  {
+    id: 1,
+    quote:
+      "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    author: "Martin Fowler",
+    whoHeIs: ""
+  },
+  {
+    id: 2,
+    quote: "First, solve the problem. Then, write the code.",
+    author: "John Johnson",
+    whoHeIs: ""
+  },
+  {
+    id: 3,
+    quote: "Experience is the name everyone gives to their mistakes.",
+    author: "Oscar Wilde",
+    whoHeIs: ""
+  },
+  { id: 4, quote: "Knowledge is power.", author: "Francis Bacon", whoHeIs: "" },
+  {
+    id: 5,
+    quote:
+      "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code.",
+    author: "Dan Salomon",
+    whoHeIs: ""
+  },
+  {
+    id: 6,
+    quote:
+      "Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.",
+    author: "Antoine de Saint-Exupery",
+    whoHeIs: ""
+  },
+  {
+    id: 7,
+    quote:
+      "When to use iterative development? You should use iterative development only on projects that you want to succeed.",
+    author: "Martin Fowler",
+    whoHeIs: ""
+  },
+  {
+    id: 8,
+    quote: "Before software can be reusable it first has to be usable.",
+    author: "Ralph Johnson",
+    whoHeIs: ""
+  },
+  {
+    id: 9,
+    quote: "Make it work, make it right, make it fast.",
+    author: "Kent Beck",
+    whoHeIs: ""
   }
 ];
 
 export function getRandomProgrammingQuote() {
-  return programmingQuotes[Math.ceil(Math.random() * programmingQuotes.length)];
+  let min = Math.ceil(0);
+  let max = Math.floor(programmingQuotes.length - 1);
+  let randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+  return programmingQuotes[randomIndex];
 }
 
 export function getProgrammingQuoteByIndex(index) {

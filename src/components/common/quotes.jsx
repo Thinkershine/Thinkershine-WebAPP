@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
   getProgrammingQuoteByIndex,
-  getProgrammingQuotes
+  getProgrammingQuotes,
+  getRandomProgrammingQuote
 } from "./../../services/fakeQuoteService";
 
 class Quotes extends Component {
@@ -11,25 +12,74 @@ class Quotes extends Component {
     super(props);
 
     this.state = {
-      programmerQuotes: [],
-      currentQuote: "",
-      currentAuthor: "",
-      whoHeIs: ""
+      programmerQuotes: getProgrammingQuotes(),
+      currentQuote: {},
+      currentQuoteIndex: 2
     };
+    this.state.prevQuote = this.prevQuote.bind(this);
+    this.state.randomQuote = this.randomQuote.bind(this);
+    this.state.nextQuote = this.nextQuote.bind(this);
   }
 
   componentDidMount() {
-    const programmerQuotes = getProgrammingQuotes();
-    console.log("QUOTES", programmerQuotes);
-    const currentQuote = programmerQuotes[0];
-    const currentAuthor = currentQuote.author;
-    const whoHeIs = currentQuote.whoHeIs;
-    this.setState({ programmerQuotes, currentQuote, currentAuthor, whoHeIs });
+    // const programmerQuotes = ;
+    console.log("QUOTES", this.state.programmerQuotes);
+    const currentQuote = this.state.programmerQuotes[
+      this.state.currentQuoteIndex
+    ];
+
+    this.setState({ currentQuote });
+  }
+
+  componentWillUnmount() {
+    console.log("Will Unmount");
+  }
+
+  prevQuote() {
+    console.log("Prev Quote");
+    let newQuoteIndex = this.state.currentQuoteIndex;
+    newQuoteIndex -= 1;
+    console.log("NEW QUOTE INDEX", newQuoteIndex);
+    if (newQuoteIndex === 0) {
+      newQuoteIndex = this.state.programmerQuotes.length - 1;
+    }
+    const currentQuote = this.state.programmerQuotes[newQuoteIndex];
+    console.log("NEW QUOTE INDEX", newQuoteIndex);
+    this.setState({
+      currentQuoteIndex: newQuoteIndex,
+      currentQuote
+    });
+  }
+
+  nextQuote() {
+    console.log("Next Quote");
+    let newQuoteIndex = this.state.currentQuoteIndex;
+    newQuoteIndex += 1;
+    console.log("Next Q Index", newQuoteIndex);
+    if (newQuoteIndex === this.state.programmerQuotes.length - 1) {
+      newQuoteIndex = 0;
+    }
+    console.log("Next Q Index", newQuoteIndex);
+    const currentQuote = this.state.programmerQuotes[newQuoteIndex];
+
+    this.setState({
+      currentQuoteIndex: newQuoteIndex,
+      currentQuote
+    });
+  }
+
+  randomQuote() {
+    console.log("Random Quote");
+    const currentQuote = getRandomProgrammingQuote();
+    const newQuoteIndex = currentQuote.id;
+
+    console.log("New INDEX", newQuoteIndex);
+    this.setState({ currentQuoteIndex: newQuoteIndex, currentQuote });
   }
 
   render() {
     return (
-      <div id="quotes">
+      <div id="quotes" className="col">
         <div className="programmers-quotes-header">
           <h3>Programmer's Quotes</h3>
           <h4>Wisdom Nuggets</h4>
@@ -39,10 +89,21 @@ class Quotes extends Component {
             <p>{this.state.currentQuote.quote}</p>
           </blockquote>
           <cite>
-            <span>~{this.state.currentAuthor}</span>
+            <span>~{this.state.currentQuote.author}</span>
             <br />
-            {this.state.whoHeIs}
+            {this.state.currentQuote.whoHeIs}
           </cite>
+        </div>
+        <div style={{ float: "right", clear: "both" }}>
+          <button onClick={this.state.prevQuote} className="btn btn-success">
+            {"<"}
+          </button>
+          <button onClick={this.state.randomQuote} className="btn btn-success">
+            Get Random Quote
+          </button>
+          <button onClick={this.state.nextQuote} className="btn btn-success">
+            {">"}
+          </button>
         </div>
       </div>
     );
