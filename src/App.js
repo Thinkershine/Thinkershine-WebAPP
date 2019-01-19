@@ -4,6 +4,7 @@ import NavBar from "./components/navBar";
 import NotFound from "./components/notFound";
 import TicTacToe from "./components/games/ticTacToe";
 import Quotes from "./components/common/quotes";
+import Skills from "./components/skills";
 import TodoList from "./components/todoList";
 import "./App.css";
 
@@ -71,7 +72,7 @@ const projects = () => {
 };
 
 const skills = () => {
-  return <h1>Skills</h1>;
+  return <Skills />;
 };
 
 const games = () => {
@@ -105,20 +106,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.updateWindowDimensions();
-
-    window.addEventListener("resize", this.updateWindowDimensions);
+    // this.updateWindowDimensions();// window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
+    // window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
   updateWindowDimensions() {
-    this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+    // this.setState({
+    //   width: window.innerWidth,
+    //   height: window.innerHeight
+    // });
   }
 
   displayQuotes() {
@@ -139,7 +138,7 @@ class App extends Component {
               className="btn btn-success"
               type="button"
             >
-              Quotes
+              Get Programmer's Quotes
             </button>
           </div>
         </div>

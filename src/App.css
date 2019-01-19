@@ -91,10 +91,6 @@ ul {
   left: 0;
 }
 
-.container {
-  overflow: auto;
-}
-
 #widgets {
   overflow: auto;
 }
@@ -168,12 +164,10 @@ ul {
 }
 
 footer {
-  overflow: hidden;
   background-color: #f5f5f5;
   padding: 5px;
   bottom: 0;
   height: 30px;
-  position: fixed;
   z-index: 1000;
   width: 100%;
 }
