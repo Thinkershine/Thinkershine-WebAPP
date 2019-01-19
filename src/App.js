@@ -4,6 +4,7 @@ import NavBar from "./components/navBar";
 import NotFound from "./components/notFound";
 import TicTacToe from "./components/games/ticTacToe";
 import Quotes from "./components/common/quotes";
+import TodoList from "./components/todoList";
 import "./App.css";
 
 const home = () => {
@@ -79,6 +80,7 @@ const games = () => {
       <h1>Games</h1>
 
       <div>
+        <h2>Tic Tac Toe</h2>
         <TicTacToe />
       </div>
     </div>
@@ -95,9 +97,11 @@ class App extends Component {
 
     this.state = {
       width: 0,
-      height: 0
+      height: 0,
+      displayQuotesOn: false
     };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.state.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.state.displayQuotes = this.displayQuotes.bind(this);
   }
 
   componentDidMount() {
@@ -117,12 +121,28 @@ class App extends Component {
     });
   }
 
+  displayQuotes() {
+    this.setState({ displayQuotesOn: !this.state.displayQuotesOn });
+  }
+
   render() {
     return (
       <div className="App">
         <header>
           <NavBar />
         </header>
+
+        <div id="sidebar" className="row">
+          <div className="btn-group-vertical col" role="group">
+            <button
+              onClick={this.state.displayQuotes}
+              className="btn btn-success"
+              type="button"
+            >
+              Quotes
+            </button>
+          </div>
+        </div>
 
         <div className="container">
           {/* FUN-PlugIns */}
@@ -148,8 +168,9 @@ class App extends Component {
             <Route path="/" exact component={home} />
             <Route path="/" component={NotFound} />
           </Switch>
+
           <div id="widgets" className="row">
-            <Quotes />
+            {this.state.displayQuotesOn && <Quotes />}
           </div>
         </div>
 

@@ -28,9 +28,7 @@ class Quotes extends Component {
     this.setState({ currentQuote });
   }
 
-  componentWillUnmount() {
-    console.log("Will Unmount");
-  }
+  componentWillUnmount() {}
 
   prevQuote() {
     let newQuoteIndex = this.state.currentQuoteIndex;
@@ -77,6 +75,7 @@ class Quotes extends Component {
           <h3>Programmer's Quotes</h3>
           <h4>Wisdom Nuggets</h4>
         </div>
+
         <div className="programmers-quotes">
           <blockquote>
             <p>{this.state.currentQuote.quote}</p>

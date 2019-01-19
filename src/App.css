@@ -177,3 +177,66 @@ footer {
   z-index: 1000;
   width: 100%;
 }
+
+/**** APPEAR - On Page Load ****/
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: 500ms linear;
+}
+
+/**** ENTER ****/
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  left: 0;
+  transition: 500ms linear 500ms;
+}
+
+/**** EXIT ****/
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit.active {
+  opacity: 0;
+  transition: 200ms linear;
+}
+.fade-exit-done {
+  opacity: 0;
+}
+
+/**** SLIDE ENTER****/
+.slide-enter {
+  opacity: 1;
+  transform: scale(0.97) translateY(5px);
+  z-index: 1200;
+}
+
+.slide-enter.slide-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 3000ms linear 1000ms, transform 3000ms ease-in-out 1000ms;
+}
+
+/**** SLIDE EXIT****/
+.slide-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.slide-exit.slide-exit-active {
+  opacity: 0;
+  transform: scale(0.97) translateY(5px);
+  transition: 1ms linear;
+}
+
+.slide-exit-done {
+  opacity: 0;
+}
