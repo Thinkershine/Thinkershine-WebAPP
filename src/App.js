@@ -7,6 +7,7 @@ import Quotes from "./components/common/quotes";
 import Skills from "./components/skills";
 import TodoList from "./components/todoList";
 import "./App.css";
+import Coins from "./components/coins";
 
 const home = () => {
   return <h1>Thinkershine WebAPP</h1>;
@@ -231,6 +232,7 @@ class App extends Component {
             {this.state.displayQuotesOn && (
               <Quotes onClose={this.state.closeQuotes} />
             )}
+            <Coins />
           </div>
         </div>
 
