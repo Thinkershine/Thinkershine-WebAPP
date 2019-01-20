@@ -143,7 +143,7 @@ class App extends Component {
           </div>
         </div>
 
-        <div className="container">
+        <div className="container" role="main">
           {/* FUN-PlugIns */}
           {/* - Mining ?
             - Get Gold ?  */}
@@ -173,7 +173,7 @@ class App extends Component {
           </div>
         </div>
 
-        <footer>
+        <footer className="footer">
           <p>
             Made with Love by{" "}
             <a href="https://thinkershine.herokuapp.com">Thinkershine</a> using
