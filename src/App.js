@@ -103,6 +103,7 @@ class App extends Component {
     };
     this.state.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.state.displayQuotes = this.displayQuotes.bind(this);
+    this.state.closeQuotes = this.closeQuotes.bind(this);
   }
 
   componentDidMount() {
@@ -122,6 +123,11 @@ class App extends Component {
 
   displayQuotes() {
     this.setState({ displayQuotesOn: !this.state.displayQuotesOn });
+  }
+
+  closeQuotes() {
+    console.log("CLOSE");
+    this.setState({ displayQuotesOn: false });
   }
 
   render() {
@@ -169,7 +175,9 @@ class App extends Component {
           </Switch>
 
           <div id="widgets" className="row">
-            {this.state.displayQuotesOn && <Quotes />}
+            {this.state.displayQuotesOn && (
+              <Quotes onClose={this.state.closeQuotes} />
+            )}
           </div>
         </div>
 

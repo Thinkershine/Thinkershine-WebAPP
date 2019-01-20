@@ -96,6 +96,9 @@ class Quotes extends Component {
           <button onClick={this.state.nextQuote} className="btn btn-success">
             {">"}
           </button>
+          <button className="btn btn-danger" onClick={this.props.onClose}>
+            CLOSE
+          </button>
         </div>
       </div>
     );
