@@ -88,6 +88,45 @@ const games = () => {
   );
 };
 
+const resources = () => {
+  return (
+    <div className="resources">
+      <h1>Resources</h1>
+
+      <div>
+        <h2>JavaScript in Depth</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://hacks.mozilla.org/category/es6-in-depth/"
+              target="_blank"
+            >
+              JavaScript in Depth
+            </a>
+          </li>
+          <li className="list-group-item">
+            {" "}
+            <a
+              href="https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/"
+              target="_blank"
+            >
+              Destructuring
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
+              href="https://hacks.mozilla.org/2015/05/es6-in-depth-rest-parameters-and-defaults/"
+              target="_blank"
+            >
+              Rest Parameters and Defaults
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
 const contact = () => {
   return <h1>Contact</h1>;
 };
@@ -169,6 +208,7 @@ class App extends Component {
             <Route path="/projects" component={projects} />
             <Route path="/skills" component={skills} />
             <Route path="/games" component={games} />
+            <Route path="/resources" component={resources} />
             <Route path="/contact" component={contact} />
             <Route path="/" exact component={home} />
             <Route path="/" component={NotFound} />

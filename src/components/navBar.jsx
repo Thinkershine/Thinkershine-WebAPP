@@ -19,6 +19,11 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/resources" className="nav-link">
+            <button className="btn btn-primary">Resources</button>
+          </Link>
+        </li>
+        <li>
           <Link to="/games" className="nav-link">
             <button className="btn btn-primary">Games</button>
           </Link>
