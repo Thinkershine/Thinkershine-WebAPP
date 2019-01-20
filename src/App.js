@@ -123,6 +123,19 @@ const resources = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <h2>React</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://www.taniarascia.com/getting-started-with-react/"
+              target="_blank"
+            >
+              Getting Started with React
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
