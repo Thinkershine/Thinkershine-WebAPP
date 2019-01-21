@@ -5,70 +5,13 @@ import NotFound from "./components/notFound";
 import TicTacToe from "./components/games/ticTacToe";
 import Quotes from "./components/common/quotes";
 import Skills from "./components/skills";
-import "./App.css";
 import Coins from "./components/coins";
+import Resources from "./components/resources";
+import Projects from "./components/projects";
+import "./App.css";
 
 const home = () => {
   return <h1>Thinkershine WebAPP</h1>;
-};
-
-const projects = () => {
-  return (
-    <div>
-      <h1>Projects</h1>
-      <div className="row">
-        <h2>Current Open-Source Projects</h2>
-        <div className="col">
-          <h3>MovieRental APP</h3>
-          <p>Image</p>
-          <p>Description</p>
-          <p>Tech : REACT</p>
-          <p>URL with Icons : GitHub Repo - OnLine Version</p>
-          {/* On Click >>> SHOW THIS PROJECT BIGGER */}
-        </div>
-        <div className="col">
-          <h3>GetRICH APP</h3>
-          <p>Image</p>
-          <p>Description</p>
-          <p>Tech : REACT</p>
-          <p>
-            URL:
-            <a
-              href="https://riches.herokuapp.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GetRICH
-            </a>
-            <span>
-              GitHub :
-              <a
-                href="https://github.com/thinkershine/getrich"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Repository
-              </a>
-            </span>
-          </p>
-        </div>
-        <div className="col">
-          <h3>Thinkershine WebAPP</h3>
-          <p>Image</p>
-          <p>Description</p>
-          <p>Tech : REACT</p>
-          <p>URL with Icons : GitHub Repo - OnLine Version</p>
-        </div>
-        <p>
-          OLD PROJECT >>> HAVENOM KINGDOMS >>> With UNITY and C# --> GUI,
-          writing, quests AND BACKEND I MADE ,,, but I abandoned the project...
-          it grew to big to do it alone and I got frustrated... deleting all the
-          work with source code... if you're curious you can checkout the blog
-          at HAVENOM WIZARDS... But - PHOTOS Are Not Loading Anymore...
-        </p>
-      </div>
-    </div>
-  );
 };
 
 const skills = () => {
@@ -83,121 +26,6 @@ const games = () => {
       <div>
         <h2>Tic Tac Toe</h2>
         <TicTacToe />
-      </div>
-    </div>
-  );
-};
-
-const resources = () => {
-  return (
-    <div className="resources">
-      <h1>Resources</h1>
-
-      <div>
-        <h2>JavaScript in Depth</h2>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <a
-              href="https://hacks.mozilla.org/category/es6-in-depth/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              JavaScript in Depth
-            </a>
-          </li>
-          <li className="list-group-item">
-            {" "}
-            <a
-              href="https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Destructuring
-            </a>
-          </li>
-          <li className="list-group-item">
-            <a
-              href="https://hacks.mozilla.org/2015/05/es6-in-depth-rest-parameters-and-defaults/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Rest Parameters and Defaults
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h2>React</h2>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <a
-              href="https://www.taniarascia.com/getting-started-with-react/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Getting Started with React
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h2>REST</h2>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              FETCH API - MSDN
-            </a>
-          </li>
-          <li className="list-group-item">
-            <a
-              href="https://github.github.io/fetch/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              FETCH API - GitHub
-            </a>
-          </li>
-          <li className="list-group-item">
-            <a
-              href="https://alligator.io/js/fetch-api/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              FETCH API - by Alligator
-            </a>
-          </li>
-          <li className="list-group-item">
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Using FETCH
-            </a>
-          </li>
-          <li className="list-group-item">
-            <a
-              href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              CORS
-            </a>
-          </li>
-          <li className="list-group-item">
-            <a
-              href="https://stackoverflow.com/questions/10636611/how-does-access-control-allow-origin-header-work/10636765#10636765"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              HOW CORS WORK
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
   );
@@ -281,10 +109,10 @@ class App extends Component {
           {/* Play Asteroids */}
           {/* Play GetRich */}
           <Switch>
-            <Route path="/projects" component={projects} />
+            <Route path="/projects" component={Projects} />
             <Route path="/skills" component={skills} />
             <Route path="/games" component={games} />
-            <Route path="/resources" component={resources} />
+            <Route path="/resources" component={Resources} />
             <Route path="/contact" component={contact} />
             <Route path="/" exact component={home} />
             <Route path="/" component={NotFound} />
