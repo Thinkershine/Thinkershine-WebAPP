@@ -202,6 +202,12 @@ class Coins extends Component {
             {this.displayFavouriteCoins(this.state.ohlcData)}
           </ul>
         </div>
+
+        <div style={{ float: "right" }}>
+          <button className="btn btn-danger" onClick={this.props.onClose}>
+            X
+          </button>
+        </div>
       </div>
     );
   }

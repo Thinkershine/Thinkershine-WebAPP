@@ -42,11 +42,14 @@ class App extends Component {
     this.state = {
       width: 0,
       height: 0,
-      displayQuotesOn: false
+      displayQuotesOn: false,
+      displayCoinsOn: false
     };
     this.state.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.state.displayQuotes = this.displayQuotes.bind(this);
     this.state.closeQuotes = this.closeQuotes.bind(this);
+    this.state.displayCoins = this.displayCoins.bind(this);
+    this.state.closeCoins = this.closeCoins.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +76,16 @@ class App extends Component {
     this.setState({ displayQuotesOn: false });
   }
 
+  displayCoins() {
+    console.log("Show Coins");
+    this.setState({ displayCoinsOn: !this.state.displayCoinsOn });
+  }
+
+  closeCoins() {
+    console.log("CLOSE");
+    this.setState({ displayCoinsOn: false });
+  }
+
   render() {
     return (
       <div className="App">
@@ -84,10 +97,17 @@ class App extends Component {
           <div className="btn-group-vertical col" role="group">
             <button
               onClick={this.state.displayQuotes}
-              className="btn btn-success"
+              className="btn btn-warning"
               type="button"
             >
               Get Programmer's Quotes
+            </button>
+            <button
+              onClick={this.state.displayCoins}
+              className="btn btn-success"
+              type="button"
+            >
+              Get Cryptocurrencies
             </button>
           </div>
         </div>
@@ -122,7 +142,9 @@ class App extends Component {
             {this.state.displayQuotesOn && (
               <Quotes onClose={this.state.closeQuotes} />
             )}
-            <Coins />
+            {this.state.displayCoinsOn && (
+              <Coins onClose={this.state.closeCoins} />
+            )}
           </div>
         </div>
 
