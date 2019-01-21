@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { formatCurrency, formatDate } from "./../utils/stringFormats";
+import {
+  formatCurrency,
+  formatDateWithWordForMonth
+} from "./../utils/stringFormats";
 
 class Coins extends Component {
   state = {};
@@ -103,14 +106,17 @@ class Coins extends Component {
     return coinsToDisplay;
   }
 
-  displayFavouriteCoins() {
+  displayFavouriteCoins(ohlcData) {
     const { favouriteCoinsToDisplay } = this.state;
     let coinsToDisplay = [];
     if (favouriteCoinsToDisplay.length > 1) {
       coinsToDisplay = favouriteCoinsToDisplay.map(coin => {
         return (
-          <li key={coin.id} className="list-group-item">
-            {coin.name}
+          <li key={coin.id} className="list-group-item list-group-item-success">
+            <span style={{ float: "left" }}>{coin.name}</span>
+            <span style={{ float: "right" }}>
+              ${formatCurrency(ohlcData[coin.id]["ohlc"].close)}
+            </span>
           </li>
         );
       });
@@ -154,29 +160,47 @@ class Coins extends Component {
   render() {
     const { paprika, coins, favouriteCoins, btc, ohlcData } = this.state;
 
-    if (!paprika || !coins || !favouriteCoins || !btc || !ohlcData["xrp-xrp"]) {
+    if (
+      !paprika ||
+      !coins ||
+      !favouriteCoins ||
+      !btc ||
+      !ohlcData["btc-bitcoin"]
+    ) {
       return null;
     }
 
     return (
       <div className="row">
         <div className="col">
-          <h2>Crypto</h2>
-          <p>Market Cap: ${formatCurrency(paprika.market_cap_usd)}</p>
-          <p>Daily Volume: ${formatCurrency(paprika.volume_24h_usd)}</p>
-          <p>
-            BTC Dominance:{" "}
-            {parseFloat(paprika.bitcoin_dominance_percentage).toFixed(2) + "%"}
-          </p>
+          <h3>Crypto</h3>
+          <ul className="list-group">
+            <li className="list-group-item list-group-item-success">
+              <p>Market Cap: ${formatCurrency(paprika.market_cap_usd)}</p>
+            </li>
+            <li className="list-group-item list-group-item-success">
+              <p>Daily Volume: ${formatCurrency(paprika.volume_24h_usd)}</p>
+            </li>
+            <li className="list-group-item list-group-item-success">
+              <p>
+                BTC Dominance: <br />
+                {parseFloat(paprika.bitcoin_dominance_percentage).toFixed(2) +
+                  "%"}
+              </p>
+            </li>
+          </ul>
+
+          <p />
+          <p />
         </div>
 
         <div className="col">
           {/* <h3>COINS : {coins != "" && coins.length}</h3>
           <ul className="list-group">{this.displayCoins()}</ul> */}
-          <h3>COINS @ {formatDate(btc[0].time_open)}</h3>
-          <ul className="list-group">{this.displayFavouriteCoins()}</ul>
-          <p>BTC ${formatCurrency(btc[0].close)}</p>
-          <p>XRP ${formatCurrency(ohlcData["xrp-xrp"]["ohlc"].close)}</p>
+          <h3>{formatDateWithWordForMonth(btc[0].time_open)}</h3>
+          <ul className="list-group">
+            {this.displayFavouriteCoins(this.state.ohlcData)}
+          </ul>
         </div>
       </div>
     );
