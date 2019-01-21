@@ -4,7 +4,9 @@ import { formatCurrency } from "./../utils/stringFormats";
 class Coins extends Component {
   state = {};
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+
     this.state = {
       paprikaAPI: "https://api.coinpaprika.com/v1",
       paprika: "",
@@ -17,24 +19,31 @@ class Coins extends Component {
         "neo-neo",
         "kcs-kucoin-shares"
       ],
-      favouriteCoinsToDisplay: []
+      favouriteCoinsToDisplay: [],
+      btc: ""
     };
+  }
 
+  componentDidMount() {
     this.getCoinPaprika();
     this.fetchCoins();
     this.fetchFavouriteCoins();
     this.fetchCoin("btc-bitcoin"); // xrp-xrp // ltc-litecoin // neo-neo // kcs-kucoin-shares
+    // this.getBTC();
   }
 
   getCoinPaprika() {
-    const paprikaAPI = this.state;
-    fetch(`https://api.coinpaprika.com/v1/global`)
+    const { paprikaAPI } = this.state;
+    const pathSearch = "/global";
+    fetch(`${paprikaAPI}${pathSearch}`)
       .then(response => response.json())
       .then(result => this.setState({ paprika: result }));
   }
 
   fetchCoin(ticker) {
-    fetch(`https://api.coinpaprika.com/v1/coins`)
+    const { paprikaAPI } = this.state;
+    const pathSearch = "/coins";
+    fetch(`${paprikaAPI}${pathSearch}`)
       .then(response => response.json())
       .then(result => this.setState({ coinToDisplay: result }));
   }
@@ -56,22 +65,18 @@ class Coins extends Component {
       fetch(`https://api.coinpaprika.com/v1/coins/${favouriteCoins[i]}`)
         .then(response => response.json())
         .then(result => {
-          console.log("RESULT", result);
+          //console.log("RESULT", result);
           let favouriteCoins = this.state.favouriteCoinsToDisplay;
           favouriteCoins[favouriteCoins.length] = result;
-          this.setState({ favouriteCoinsToDisplay: favouriteCoins }, () =>
-            console.log(
-              "FAVOURITE COINS TO DISPLAY ",
-              this.state.favouriteCoinsToDisplay
-            )
-          );
+          this.setState({ favouriteCoinsToDisplay: favouriteCoins });
         });
     }
   }
 
   fetchCoins() {
-    const paprikaAPI = this.state;
-    fetch(`https://api.coinpaprika.com/v1/coins`)
+    const { paprikaAPI } = this.state;
+    const pathSearch = "/coins";
+    fetch(`${paprikaAPI}${pathSearch}`)
       .then(response => response.json())
       .then(result =>
         this.setState({ coins: result }, () => console.log(this.state.coins))
@@ -95,7 +100,6 @@ class Coins extends Component {
 
   displayFavouriteCoins() {
     const { favouriteCoinsToDisplay } = this.state;
-    console.log("FAV COINS", favouriteCoinsToDisplay);
     let coinsToDisplay = [];
     if (favouriteCoinsToDisplay.length > 1) {
       coinsToDisplay = favouriteCoinsToDisplay.map(coin => {
@@ -109,12 +113,33 @@ class Coins extends Component {
     return coinsToDisplay;
   }
 
+  getBTC() {
+    fetch(`https://api.coinpaprika.com/v1/coins/btc-bitcoin/ohlcv/latest/`, {
+      mode: "cors",
+      method: "GET",
+      credentials: "omit"
+    })
+      .then(response => {
+        console.log("RES", response.status);
+        console.log("RES", response.statusText);
+        console.log("RES", response.headers);
+        console.log("RES", response.url);
+        response.json();
+      })
+      .then(result => {
+        console.log("RESULT BTC", result);
+        this.setState({ btc: result });
+      });
+  }
+
   render() {
     const { paprika, coins, coinToDisplay, favouriteCoins } = this.state;
 
-    if (!paprika || !coins || !coinToDisplay) {
+    if (!paprika || !coins || !coinToDisplay || !favouriteCoins) {
       return null;
     }
+
+    console.log("BTC", this.state.btc);
     return (
       <div className="row">
         <div className="col">
@@ -130,9 +155,9 @@ class Coins extends Component {
         <div className="col">
           {/* <h3>COINS : {coins != "" && coins.length}</h3>
           <ul className="list-group">{this.displayCoins()}</ul> */}
-
           <h3>COINS</h3>
           <ul className="list-group">{this.displayFavouriteCoins()}</ul>
+          <p>BTC{this.state.btc}</p>
         </div>
       </div>
     );
