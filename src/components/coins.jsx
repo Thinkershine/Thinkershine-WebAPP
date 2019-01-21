@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatCurrency } from "./../utils/stringFormats";
+import { formatCurrency, formatDate } from "./../utils/stringFormats";
 
 class Coins extends Component {
   state = {};
@@ -20,7 +20,9 @@ class Coins extends Component {
         "kcs-kucoin-shares"
       ],
       favouriteCoinsToDisplay: [],
-      btc: ""
+      btc: "",
+      ticker: "",
+      ohlcData: []
     };
   }
 
@@ -28,8 +30,13 @@ class Coins extends Component {
     this.getCoinPaprika();
     this.fetchCoins();
     this.fetchFavouriteCoins();
-    this.fetchCoin("btc-bitcoin"); // xrp-xrp // ltc-litecoin // neo-neo // kcs-kucoin-shares
-    // this.getBTC();
+    //this.fetchCoin("btc-bitcoin"); // xrp-xrp // ltc-litecoin // neo-neo // kcs-kucoin-shares
+    this.getBTC();
+    this.getOHLC("btc-bitcoin");
+    this.getOHLC("xrp-xrp");
+    this.getOHLC("ltc-litecoin");
+    this.getOHLC("neo-neo");
+    this.getOHLC("kcs-kucoin-shares");
   }
 
   getCoinPaprika() {
@@ -78,9 +85,7 @@ class Coins extends Component {
     const pathSearch = "/coins";
     fetch(`${paprikaAPI}${pathSearch}`)
       .then(response => response.json())
-      .then(result =>
-        this.setState({ coins: result }, () => console.log(this.state.coins))
-      );
+      .then(result => this.setState({ coins: result }));
   }
 
   displayCoins() {
@@ -113,39 +118,52 @@ class Coins extends Component {
     return coinsToDisplay;
   }
 
-  getBTC() {
-    fetch(`https://api.coinpaprika.com/v1/coins/btc-bitcoin/ohlcv/latest/`, {
-      mode: "cors",
-      method: "GET",
-      credentials: "omit"
-    })
-      .then(response => {
-        console.log("RES", response.status);
-        console.log("RES", response.statusText);
-        console.log("RES", response.headers);
-        console.log("RES", response.url);
-        response.json();
-      })
+  getOHLC(forTicker) {
+    const { paprikaAPI } = this.state;
+    const pathSearch = "/coins";
+    fetch(`${paprikaAPI}${pathSearch}/${forTicker}/ohlcv/latest`)
+      .then(response => response.json())
       .then(result => {
-        console.log("RESULT BTC", result);
-        this.setState({ btc: result });
+        const tickerData = this.state.ohlcData;
+        let ticker = {
+          ohlc: {
+            close: result[0].close,
+            high: result[0].high,
+            low: result[0].low,
+            open: result[0].open,
+            market_cap: result[0].market_cap,
+            volume: result[0].volume
+          }
+        };
+        tickerData[forTicker] = ticker;
+
+        this.setState({ ohlcData: tickerData });
       });
   }
 
-  render() {
-    const { paprika, coins, coinToDisplay, favouriteCoins } = this.state;
+  getBTC() {
+    fetch(`https://api.coinpaprika.com/v1/coins/btc-bitcoin/ohlcv/latest`)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(result => this.setState({ btc: result }));
+  }
 
-    if (!paprika || !coins || !coinToDisplay || !favouriteCoins) {
+  render() {
+    const { paprika, coins, favouriteCoins, btc, ohlcData } = this.state;
+
+    if (!paprika || !coins || !favouriteCoins || !btc || !ohlcData["xrp-xrp"]) {
       return null;
     }
 
-    console.log("BTC", this.state.btc);
     return (
       <div className="row">
         <div className="col">
           <h2>Crypto</h2>
           <p>Market Cap: ${formatCurrency(paprika.market_cap_usd)}</p>
-          <p>VOLUME: ${formatCurrency(paprika.volume_24h_usd)}</p>
+          <p>Daily Volume: ${formatCurrency(paprika.volume_24h_usd)}</p>
           <p>
             BTC Dominance:{" "}
             {parseFloat(paprika.bitcoin_dominance_percentage).toFixed(2) + "%"}
@@ -155,9 +173,10 @@ class Coins extends Component {
         <div className="col">
           {/* <h3>COINS : {coins != "" && coins.length}</h3>
           <ul className="list-group">{this.displayCoins()}</ul> */}
-          <h3>COINS</h3>
+          <h3>COINS @ {formatDate(btc[0].time_open)}</h3>
           <ul className="list-group">{this.displayFavouriteCoins()}</ul>
-          <p>BTC{this.state.btc}</p>
+          <p>BTC ${formatCurrency(btc[0].close)}</p>
+          <p>XRP ${formatCurrency(ohlcData["xrp-xrp"]["ohlc"].close)}</p>
         </div>
       </div>
     );
