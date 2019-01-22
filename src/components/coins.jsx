@@ -31,6 +31,11 @@ class Coins extends Component {
       historicalOhlcData: [],
       daysOfHistory: 7
     };
+
+    this.state.increaseTrendLine = this.increaseTrendLine.bind(this);
+    this.state.decreaseTrendLine = this.decreaseTrendLine.bind(this);
+    this.state.getNewOHLCHistory = this.getNewOHLCHistory.bind(this);
+    this.state.setHistoryTrendLine = this.setHistoryTrendLine.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +51,12 @@ class Coins extends Component {
     this.getOHLC("kcs-kucoin-shares");
 
     let daysOfHistory = this.state.daysOfHistory;
+    this.getNewOHLCHistory(daysOfHistory);
+
+    // this.getHistoricalCoinData("btc-bitcoin", "2019-01-01", 10, "1d");
+  }
+
+  getNewOHLCHistory(daysOfHistory) {
     this.getHistoricalOHLC(
       "btc-bitcoin",
       formatDateForAPI(Date.now(), daysOfHistory),
@@ -75,8 +86,12 @@ class Coins extends Component {
       formatDateForAPI(Date.now(), daysOfHistory),
       daysOfHistory
     );
+  }
 
-    // this.getHistoricalCoinData("btc-bitcoin", "2019-01-01", 10, "1d");
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.daysOfHistory != nextState.daysOfHistory) {
+      this.state.getNewOHLCHistory(nextState.daysOfHistory);
+    }
   }
 
   getCoinPaprika() {
@@ -264,6 +279,32 @@ class Coins extends Component {
       .then(result => this.setState({ btc: result }));
   }
 
+  increaseTrendLine() {
+    const { daysOfHistory } = this.state;
+
+    let newHistory = daysOfHistory + 1;
+    if (newHistory > 360) {
+      return;
+    }
+    this.setState({ daysOfHistory: newHistory });
+  }
+
+  decreaseTrendLine() {
+    const { daysOfHistory } = this.state;
+    let newHistory = daysOfHistory - 1;
+    if (newHistory <= 1) {
+      return;
+    }
+
+    this.setState({ daysOfHistory: newHistory });
+  }
+
+  setHistoryTrendLine(days) {
+    const { daysOfHistory } = this.state;
+    let newHistory = days;
+    this.setState({ daysOfHistory: newHistory });
+  }
+
   render() {
     const { paprika, coins, favouriteCoins, btc, ohlcData } = this.state;
 
@@ -279,6 +320,60 @@ class Coins extends Component {
 
     return (
       <div className="row">
+        <div
+          className="nav"
+          style={{
+            float: "right",
+            clear: "both",
+            margin: "0 auto"
+          }}
+        >
+          <button
+            className="btn btn-success"
+            onClick={this.state.increaseTrendLine}
+          >
+            + Day
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={this.state.decreaseTrendLine}
+          >
+            - Day
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => this.state.setHistoryTrendLine(30)}
+          >
+            30 Days
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => this.state.setHistoryTrendLine(60)}
+          >
+            60 Days
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => this.state.setHistoryTrendLine(90)}
+          >
+            90 Days
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => this.state.setHistoryTrendLine(180)}
+          >
+            180 Days
+          </button>
+          <button
+            className="btn btn-success"
+            onClick={() => this.state.setHistoryTrendLine(360)}
+          >
+            360 Days
+          </button>
+          <button className="btn btn-danger" onClick={this.props.onClose}>
+            CLOSE
+          </button>
+        </div>
         <div className="col">
           <h3>Crypto</h3>
           <ul className="list-group">
@@ -308,12 +403,6 @@ class Coins extends Component {
           <ul className="list-group">
             {this.displayFavouriteCoins(this.state.ohlcData)}
           </ul>
-        </div>
-
-        <div style={{ float: "right" }}>
-          <button className="btn btn-danger" onClick={this.props.onClose}>
-            X
-          </button>
         </div>
       </div>
     );
