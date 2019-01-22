@@ -50,6 +50,24 @@ const Resources = () => {
               Getting Started with React
             </a>
           </li>
+          <li className="list-group-item">
+            <a
+              href="https://github.com/enaqx/awesome-react"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Awesome React
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
+              href="https://developmentarc.gitbooks.io/react-indepth/content/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React in Depth
+            </a>
+          </li>
         </ul>
       </div>
       <div>
