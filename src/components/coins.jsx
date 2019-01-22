@@ -318,89 +318,105 @@ class Coins extends Component {
 
     return (
       <div className="row">
-        <div
-          className="nav"
-          style={{
-            float: "right",
-            clear: "both",
-            margin: "0 auto"
-          }}
-        >
-          <button
-            className="btn btn-success"
-            onClick={this.state.increaseTrendLine}
-          >
-            + Day
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={this.state.decreaseTrendLine}
-          >
-            - Day
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={() => this.state.setHistoryTrendLine(30)}
-          >
-            30 Days
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={() => this.state.setHistoryTrendLine(60)}
-          >
-            60 Days
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={() => this.state.setHistoryTrendLine(90)}
-          >
-            90 Days
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={() => this.state.setHistoryTrendLine(180)}
-          >
-            180 Days
-          </button>
-          <button
-            className="btn btn-success"
-            onClick={() => this.state.setHistoryTrendLine(360)}
-          >
-            360 Days
-          </button>
-          <button className="btn btn-danger" onClick={this.props.onClose}>
-            CLOSE
-          </button>
-        </div>
-        <div className="col">
-          <h3>Crypto</h3>
-          <ul className="list-group">
-            <li className="list-group-item list-group-item-success">
-              <p>Market Cap: ${formatCurrency(paprika.market_cap_usd)}</p>
+        <div className="row container" style={{ marginTop: 20 }}>
+          <ul className="nav" style={{ margin: "0 auto" }}>
+            <li className="nav-item">
+              <button
+                className="btn btn-success nav-item"
+                onClick={this.state.increaseTrendLine}
+              >
+                + Day
+              </button>
             </li>
-            <li className="list-group-item list-group-item-success">
-              <p>Daily Volume: ${formatCurrency(paprika.volume_24h_usd)}</p>
+            <li className="nav-item">
+              <button
+                className="btn btn-success"
+                onClick={this.state.decreaseTrendLine}
+              >
+                - Day
+              </button>
             </li>
-            <li className="list-group-item list-group-item-success">
-              <p>
-                BTC Dominance: <br />
-                {parseFloat(paprika.bitcoin_dominance_percentage).toFixed(2) +
-                  "%"}
-              </p>
+            <li className="nav-item">
+              <button
+                className="btn btn-success"
+                onClick={() => this.state.setHistoryTrendLine(30)}
+              >
+                30 Days
+              </button>
+            </li>
+            <li className="nav-item">
+              {" "}
+              <button
+                className="btn btn-success"
+                onClick={() => this.state.setHistoryTrendLine(60)}
+              >
+                60 Days
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn btn-success"
+                onClick={() => this.state.setHistoryTrendLine(90)}
+              >
+                90 Days
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn btn-success"
+                onClick={() => this.state.setHistoryTrendLine(180)}
+              >
+                180 Days
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn btn-success"
+                onClick={() => this.state.setHistoryTrendLine(360)}
+              >
+                360 Days
+              </button>
+            </li>
+            <li className="nav-item">
+              {" "}
+              <button className="btn btn-danger" onClick={this.props.onClose}>
+                CLOSE
+              </button>
             </li>
           </ul>
-
-          <p />
-          <p />
         </div>
 
-        <div className="col">
-          {/* <h3>COINS : {coins != "" && coins.length}</h3>
+        <div className="row container">
+          <div className="col">
+            <h3>Crypto</h3>
+            <ul className="list-group">
+              <li className="list-group-item list-group-item-success">
+                <p>Market Cap: ${formatCurrency(paprika.market_cap_usd)}</p>
+              </li>
+              <li className="list-group-item list-group-item-success">
+                <p>Daily Volume: ${formatCurrency(paprika.volume_24h_usd)}</p>
+              </li>
+              <li className="list-group-item list-group-item-success">
+                <p>
+                  BTC Dominance: <br />
+                  {parseFloat(paprika.bitcoin_dominance_percentage).toFixed(2) +
+                    "%"}
+                </p>
+              </li>
+            </ul>
+
+            <p />
+            <p />
+          </div>
+
+          <div className="col">
+            {/* <h3>COINS : {coins != "" && coins.length}</h3>
           <ul className="list-group">{this.displayCoins()}</ul> */}
-          <h3>{formatDateWithWordForMonth(btc[0].time_open)}</h3>
-          <ul className="list-group">
-            {this.displayFavouriteCoins(this.state.ohlcData)}
-          </ul>
+            <h3>{formatDateWithWordForMonth(btc[0].time_open)}</h3>
+            <ul className="list-group">
+              {this.displayFavouriteCoins(this.state.ohlcData)}
+            </ul>
+          </div>
         </div>
       </div>
     );
