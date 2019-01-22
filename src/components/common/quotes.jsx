@@ -21,11 +21,12 @@ class Quotes extends Component {
   }
 
   componentDidMount() {
-    const currentQuote = this.state.programmerQuotes[
-      this.state.currentQuoteIndex
-    ];
+    // const currentQuote = this.state.programmerQuotes[
+    //   this.state.currentQuoteIndex
+    // ];
+    this.randomQuote();
 
-    this.setState({ currentQuote });
+    // this.setState({ currentQuote });
   }
 
   componentWillUnmount() {}

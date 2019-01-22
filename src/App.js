@@ -16,7 +16,7 @@ const home = () => {
     <React.Fragment>
       <h1>Thinkershine WebAPP</h1>
       <Confetti
-        text="Have a Nice Day :)"
+        text="What a Nice Day :)"
         particlesAmount={55}
         animate={false}
         particleTypes={["circle"]} // "triangle", "line", "circle",

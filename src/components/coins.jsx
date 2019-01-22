@@ -29,7 +29,7 @@ class Coins extends Component {
       ticker: "",
       ohlcData: [],
       historicalOhlcData: [],
-      daysOfHistory: 7
+      daysOfHistory: 30
     };
 
     this.state.increaseTrendLine = this.increaseTrendLine.bind(this);
@@ -171,8 +171,18 @@ class Coins extends Component {
           dataForTrend[i] = coinData[i].close;
         }
 
+        let higherOrLowerClassName = "list-group-item list-group-item-";
+        // Check if is Higher or Lower?
+        if (coinData[coinData.length - 1].close >= coinData[0].close) {
+          // Is Higher & Green
+          higherOrLowerClassName += "success";
+        } else {
+          // Is Lower & Red
+          higherOrLowerClassName += "danger";
+        }
+
         return (
-          <li key={coin.id} className="list-group-item list-group-item-success">
+          <li key={coin.id} className={higherOrLowerClassName}>
             <span style={{ float: "left" }}>{coin.name}</span>
             <span style={{ float: "right" }}>
               Price ${formatCurrency(ohlcData[coin.id]["ohlc"].close)}
