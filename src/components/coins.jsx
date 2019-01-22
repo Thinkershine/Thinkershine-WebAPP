@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   formatCurrency,
+  formatDateForAPI,
   formatDateWithWordForMonth
 } from "./../utils/stringFormats";
 import Trend from "react-trend";
@@ -26,7 +27,9 @@ class Coins extends Component {
       favouriteCoinsToDisplay: [],
       btc: "",
       ticker: "",
-      ohlcData: []
+      ohlcData: [],
+      historicalOhlcData: [],
+      daysOfHistory: 7
     };
   }
 
@@ -41,6 +44,39 @@ class Coins extends Component {
     this.getOHLC("ltc-litecoin");
     this.getOHLC("neo-neo");
     this.getOHLC("kcs-kucoin-shares");
+
+    let daysOfHistory = this.state.daysOfHistory;
+    this.getHistoricalOHLC(
+      "btc-bitcoin",
+      formatDateForAPI(Date.now(), daysOfHistory),
+      daysOfHistory
+    );
+
+    this.getHistoricalOHLC(
+      "xrp-xrp",
+      formatDateForAPI(Date.now(), daysOfHistory),
+      daysOfHistory
+    );
+
+    this.getHistoricalOHLC(
+      "ltc-litecoin",
+      formatDateForAPI(Date.now(), daysOfHistory),
+      daysOfHistory
+    );
+
+    this.getHistoricalOHLC(
+      "neo-neo",
+      formatDateForAPI(Date.now(), daysOfHistory),
+      daysOfHistory
+    );
+
+    this.getHistoricalOHLC(
+      "kcs-kucoin-shares",
+      formatDateForAPI(Date.now(), daysOfHistory),
+      daysOfHistory
+    );
+
+    // this.getHistoricalCoinData("btc-bitcoin", "2019-01-01", 10, "1d");
   }
 
   getCoinPaprika() {
@@ -76,7 +112,6 @@ class Coins extends Component {
       fetch(`https://api.coinpaprika.com/v1/coins/${favouriteCoins[i]}`)
         .then(response => response.json())
         .then(result => {
-          //console.log("RESULT", result);
           let favouriteCoins = this.state.favouriteCoinsToDisplay;
           favouriteCoins[favouriteCoins.length] = result;
           this.setState({ favouriteCoinsToDisplay: favouriteCoins });
@@ -110,15 +145,24 @@ class Coins extends Component {
   displayFavouriteCoins(ohlcData) {
     const { favouriteCoinsToDisplay } = this.state;
     let coinsToDisplay = [];
+
+    let dataArrayForTrendDrawing = this.state.historicalOhlc;
+
     if (favouriteCoinsToDisplay.length > 1) {
       coinsToDisplay = favouriteCoinsToDisplay.map(coin => {
+        let coinData = dataArrayForTrendDrawing[coin.id];
+        let dataForTrend = [];
+        for (let i = 0; i < coinData.length; i += 1) {
+          dataForTrend[i] = coinData[i].close;
+        }
+
         return (
           <li key={coin.id} className="list-group-item list-group-item-success">
             <span style={{ float: "left" }}>{coin.name}</span>
             <span style={{ float: "right" }}>
-              ${formatCurrency(ohlcData[coin.id]["ohlc"].close)}
+              Price ${formatCurrency(ohlcData[coin.id]["ohlc"].close)}
             </span>
-            7 Day Trend
+            {this.state.daysOfHistory} Day Trend
             <Trend
               smooth
               autoDraw
@@ -128,7 +172,7 @@ class Coins extends Component {
               radius={6.6}
               strokeWidth={3.3}
               strokeLinecap={"round"}
-              data={[0, 10, 5, 22, 3.6, 11]}
+              data={dataForTrend}
             />
           </li>
         );
@@ -151,13 +195,63 @@ class Coins extends Component {
             low: result[0].low,
             open: result[0].open,
             market_cap: result[0].market_cap,
-            volume: result[0].volume
+            volume: result[0].volume,
+            time_open: result[0].time_open,
+            time_close: result[0].time_close
           }
         };
         tickerData[forTicker] = ticker;
 
         this.setState({ ohlcData: tickerData });
       });
+  }
+
+  getHistoricalOHLC(forTicker, fromDate, days) {
+    const { paprikaAPI } = this.state;
+    const pathSearch = "/coins";
+    const historicalPath = "/ohlcv/historical";
+    fetch(
+      `${paprikaAPI}${pathSearch}/${forTicker}${historicalPath}?start=${fromDate}&limit=${days}`
+    )
+      .then(response => response.json())
+      .then(result => {
+        const tickerData = this.state.historicalOhlcData;
+
+        let historicalOhlcData = [];
+        for (let i = 0; i < days; i += 1) {
+          historicalOhlcData[i] = {
+            close: result[i].close,
+            high: result[i].high,
+            low: result[i].low,
+            open: result[i].open,
+            market_cap: result[i].market_cap,
+            volume: result[i].volume,
+            time_open: result[i].time_open,
+            time_close: result[i].time_close
+          };
+        }
+
+        let ticker = historicalOhlcData;
+        tickerData[forTicker] = ticker;
+
+        this.setState({ historicalOhlc: tickerData });
+      });
+  }
+
+  getHistoricalCoinData(forTicker, fromDate, days, interval) {
+    const { paprikaAPI } = this.state;
+    const pathSearch = "/tickers";
+    const historicalPath = "/historical";
+
+    fetch(
+      `${paprikaAPI}${pathSearch}/${forTicker}${historicalPath}?start=${fromDate}&limit=${days}&interval=${interval}`
+    )
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(result => console.log("HISTORICAL RESULT", result));
   }
 
   getBTC() {
