@@ -181,7 +181,11 @@ class TicTacToe extends Component {
           <ol>{/* TODO */}</ol>
         </div>
         {this.state.playerWon && (
-          <Confetti text={this.state.winningMessage} particlesAmount={200} />
+          <Confetti
+            text={this.state.winningMessage}
+            particlesAmount={200}
+            particleTypes={["circle", "circle", "triangle", "triangle", "line"]}
+          />
         )}
       </div>
     );

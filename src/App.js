@@ -8,10 +8,22 @@ import Skills from "./components/skills";
 import Coins from "./components/coins";
 import Resources from "./components/resources";
 import Projects from "./components/projects";
+import Confetti from "./components/common/confetti";
 import "./App.css";
 
 const home = () => {
-  return <h1>Thinkershine WebAPP</h1>;
+  return (
+    <React.Fragment>
+      <h1>Thinkershine WebAPP</h1>
+      <Confetti
+        text="Welcome"
+        particlesAmount={55}
+        animate={false}
+        particleTypes={["circle"]} // "triangle", "line", "circle",
+        particleSize={25}
+      />
+    </React.Fragment>
+  );
 };
 
 const skills = () => {

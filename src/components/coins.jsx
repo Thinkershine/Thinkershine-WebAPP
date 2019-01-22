@@ -89,7 +89,7 @@ class Coins extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.daysOfHistory != nextState.daysOfHistory) {
+    if (this.state.daysOfHistory !== nextState.daysOfHistory) {
       this.state.getNewOHLCHistory(nextState.daysOfHistory);
     }
   }
@@ -300,9 +300,7 @@ class Coins extends Component {
   }
 
   setHistoryTrendLine(days) {
-    const { daysOfHistory } = this.state;
-    let newHistory = days;
-    this.setState({ daysOfHistory: newHistory });
+    this.setState({ daysOfHistory: days });
   }
 
   render() {

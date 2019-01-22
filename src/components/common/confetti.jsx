@@ -8,7 +8,7 @@ class Confetti extends Component {
 
     this.state = {
       maximumParticles: this.props.particlesAmount,
-      particleTypes: ["circle", "circle", "triangle", "triangle", "line"],
+      particleTypes: this.props.particleTypes, // ["circle", "circle", "triangle", "triangle", "line"],
       particleColors: [
         [238, 96, 169],
         [68, 213, 217],
@@ -18,7 +18,11 @@ class Confetti extends Component {
       ],
       angles: [[4, 0, 4, 4], [2, 2, 0, 4], [0, 4, 2, 2], [0, 4, 4, 4]],
       particles: [],
-      confettiCanvas: this.refs.canvas
+      confettiCanvas: this.refs.canvas,
+      animate: this.props.animate !== undefined ? this.props.animate : true,
+      drawn: false,
+      particleSize:
+        this.props.particleSize !== undefined ? this.props.particleSize : 5
     };
 
     this.state.img = "";
@@ -54,7 +58,10 @@ class Confetti extends Component {
   }
 
   drawParticles = () => {
-    console.log("PARTICLES");
+    if (!this.state.animate && this.state.drawn) {
+      return;
+    }
+    console.log("DRAW PARTICLES");
 
     const confettiCanvas = this.refs.canvas;
     const context = confettiCanvas.getContext("2d");
@@ -73,7 +80,7 @@ class Confetti extends Component {
         localParticles.push({
           xCord: Math.random() * window.innerWidth, //x-coordinate
           yCord: Math.random() * window.innerHeight, //y-coordinate
-          radius: Math.random() * 4 + 1, //radius
+          radius: Math.random() * this.state.particleSize + 1, //radius
           density: Math.random() * maximumParticles, //density
           lineAngle: Math.floor(Math.random() * 65 + -30), // line angle
           triangleRotation: angles[Math.floor(Math.random() * angles.length)], // triangle rotation
@@ -137,10 +144,16 @@ class Confetti extends Component {
       window.innerHeight / 3.5
     );
 
-    this.setState({ particles: localParticles }, () => this.updateParticles());
+    this.setState({ particles: localParticles, drawn: true }, () =>
+      this.updateParticles()
+    );
   };
 
   updateParticles = () => {
+    if (this.state.animate === false) {
+      return;
+    }
+
     const { maximumParticles, particles } = this.state;
 
     const localParticles = particles;
