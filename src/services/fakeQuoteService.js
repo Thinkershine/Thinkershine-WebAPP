@@ -86,6 +86,13 @@ export const programmingQuotes = [
       "One of the best programming skills you can have is knowing when to walk away for awhile.",
     author: "Oscar Godson",
     whoHeIs: ""
+  },
+  {
+    id: 14,
+    quote:
+      "If you haven't spent at least a month working on the same program - working 16 hours a day, dreaming about it during remaining 8 hours of restless sleep, working several nights straight through trying to eliminate that \"one last bug\" from the program - then you haven't really written a complicated computer program. And you may not have the sense that there is something exhilarating about programming.",
+    author: "Edward Yourdon",
+    whoHeIs: ""
   }
 ];
 

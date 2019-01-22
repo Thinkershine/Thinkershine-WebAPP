@@ -111,6 +111,29 @@ const Resources = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <h2>Databases & Data Management</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://devcenter.heroku.com/categories/heroku-postgres"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Heroku Postgress
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
+              href="https://docs.mlab.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MongoDB mLab
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

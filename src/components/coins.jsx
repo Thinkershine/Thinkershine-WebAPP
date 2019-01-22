@@ -3,6 +3,7 @@ import {
   formatCurrency,
   formatDateWithWordForMonth
 } from "./../utils/stringFormats";
+import Trend from "react-trend";
 
 class Coins extends Component {
   state = {};
@@ -117,6 +118,18 @@ class Coins extends Component {
             <span style={{ float: "right" }}>
               ${formatCurrency(ohlcData[coin.id]["ohlc"].close)}
             </span>
+            7 Day Trend
+            <Trend
+              smooth
+              autoDraw
+              autoDrawDuration={2000}
+              autoDrawEasing="ease-out"
+              gradient={["purple", "violet"]}
+              radius={6.6}
+              strokeWidth={3.3}
+              strokeLinecap={"round"}
+              data={[0, 10, 5, 22, 3.6, 11]}
+            />
           </li>
         );
       });
