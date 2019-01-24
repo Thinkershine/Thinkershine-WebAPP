@@ -29,6 +29,11 @@ const NavBar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/forms" className="nav-link">
+            <button className="btn btn-primary">Forms</button>
+          </Link>
+        </li>
+        <li>
           <Link to="/contact" className="nav-link">
             <button className="btn btn-primary">Contact</button>
           </Link>
