@@ -111,6 +111,15 @@ const Resources = () => {
           </li>
           <li className="list-group-item">
             <a
+              href="https://github.com/axios/axios"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Axios - Promise based HTTP client for the browser and node.js
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
               href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
               target="_blank"
               rel="noopener noreferrer"
