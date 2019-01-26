@@ -161,6 +161,20 @@ const Resources = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <h2>MISC</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              File API
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
