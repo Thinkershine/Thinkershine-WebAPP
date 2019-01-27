@@ -157,6 +157,10 @@ class Coins extends Component {
     return coinsToDisplay;
   }
 
+  calculatePercentageChange = (currentPrice, previousPrice) => {
+    return (((currentPrice - previousPrice) / previousPrice) * 100).toFixed(2);
+  };
+
   displayFavouriteCoins(ohlcData) {
     const { favouriteCoinsToDisplay } = this.state;
     let coinsToDisplay = [];
@@ -199,6 +203,12 @@ class Coins extends Component {
               strokeLinecap={"round"}
               data={dataForTrend}
             />
+            <span>
+              {this.calculatePercentageChange(
+                coinData[coinData.length - 1].close,
+                coinData[0].close
+              ) + "%"}
+            </span>
           </li>
         );
       });
