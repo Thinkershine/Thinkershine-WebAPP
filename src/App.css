@@ -234,3 +234,9 @@ ul {
 .slide-exit-done {
   opacity: 0;
 }
+
+/**** PROJECT ****/
+.project {
+  border-radius: 5px;
+  background-color: rgba(218, 165, 32, 0.1);
+}
