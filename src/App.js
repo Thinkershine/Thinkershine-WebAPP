@@ -23,7 +23,7 @@ const forms = () => {
 const home = () => {
   return (
     <React.Fragment>
-      <h1>Thinkershine WebAPP</h1>
+      <h1 className="hidden">Thinkershine WebAPP</h1>
       <Confetti
         text="What a Nice Day :)"
         particlesAmount={55}
@@ -31,6 +31,7 @@ const home = () => {
         particleTypes={["circle"]} // "triangle", "line", "circle",
         particleSize={25}
       />
+      <div id="homeFiller" style={{ height: 550 }} />
     </React.Fragment>
   );
 };
