@@ -11,6 +11,7 @@ import Projects from "./components/projects";
 import Confetti from "./components/common/confetti";
 import NameForm from "./components/forms/nameForm";
 import Blog from "./components/blog";
+import GuestBookForm from "./components/guestBookForm";
 import "./App.css";
 
 const forms = () => {
@@ -66,13 +67,16 @@ class App extends Component {
       width: 0,
       height: 0,
       displayQuotesOn: false,
-      displayCoinsOn: false
+      displayCoinsOn: false,
+      displayGuestBookOn: false
     };
+
     this.state.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.state.displayQuotes = this.displayQuotes.bind(this);
     this.state.closeQuotes = this.closeQuotes.bind(this);
     this.state.displayCoins = this.displayCoins.bind(this);
     this.state.closeCoins = this.closeCoins.bind(this);
+    this.state.displayGuestBook = this.displayGuestBook.bind(this);
   }
 
   componentDidMount() {
@@ -109,6 +113,11 @@ class App extends Component {
     this.setState({ displayCoinsOn: false });
   }
 
+  displayGuestBook() {
+    console.log("SHOW GuestBook");
+    this.setState({ displayGuestBookOn: !this.state.displayGuestBookOn });
+  }
+
   render() {
     return (
       <div className="App">
@@ -131,6 +140,20 @@ class App extends Component {
               type="button"
             >
               Get Cryptocurrencies
+            </button>
+            <button
+              onClick={this.state.displayGuestBook}
+              className="btn btn-danger"
+              type="button"
+            >
+              Grab GuestBook
+            </button>
+            <button
+              onClick={this.state.displayGuestBook}
+              className="btn btn-secondary"
+              type="button"
+            >
+              Grab Journal
             </button>
           </div>
         </div>
@@ -170,12 +193,13 @@ class App extends Component {
             {this.state.displayCoinsOn && (
               <Coins onClose={this.state.closeCoins} />
             )}
+            {this.state.displayGuestBookOn && <GuestBookForm />}
           </div>
         </div>
 
         <footer className="footer">
           <p>
-            Made with Love by{" "}
+            Made with FUN by{" "}
             <a href="https://thinkershine.herokuapp.com">Thinkershine</a> using
             REACT LINK - HOSTED ON - HEROKU LINK
           </p>
