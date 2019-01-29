@@ -32,7 +32,7 @@ class GuestBookForm extends Form {
 
   render() {
     return (
-      <div>
+      <div id="guestBook-form" className="container">
         <h1>Guest Book</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name")}

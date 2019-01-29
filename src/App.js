@@ -125,36 +125,50 @@ class App extends Component {
           <NavBar />
         </header>
 
-        <div id="sidebar" className="row">
-          <div className="btn-group-vertical col" role="group">
-            <button
-              onClick={this.state.displayQuotes}
-              className="btn btn-warning"
-              type="button"
-            >
-              Get Programmer's Quotes
-            </button>
-            <button
-              onClick={this.state.displayCoins}
-              className="btn btn-success"
-              type="button"
-            >
-              Get Cryptocurrencies
-            </button>
-            <button
-              onClick={this.state.displayGuestBook}
-              className="btn btn-danger"
-              type="button"
-            >
-              Grab GuestBook
-            </button>
-            <button
-              onClick={this.state.displayGuestBook}
-              className="btn btn-secondary"
-              type="button"
-            >
-              Grab Journal
-            </button>
+        <div id="sidebar-sticky" className="row">
+          <div className="col" role="group">
+            <ul className="list-group" style={{ width: 250 }}>
+              <li className="list-group-item">
+                <button
+                  onClick={this.state.displayQuotes}
+                  className="btn btn-warning"
+                  type="button"
+                  style={{ width: 250 }}
+                >
+                  Get Programmer's Quotes
+                </button>
+              </li>
+              <li className="list-group-item">
+                <button
+                  onClick={this.state.displayCoins}
+                  className="btn btn-success"
+                  type="button"
+                  style={{ width: 250 }}
+                >
+                  Get Cryptocurrencies
+                </button>
+              </li>
+              <li className="list-group-item">
+                <button
+                  onClick={this.state.displayGuestBook}
+                  className="btn btn-danger"
+                  type="button"
+                  style={{ width: 250 }}
+                >
+                  Grab GuestBook
+                </button>
+              </li>
+              <li className="list-group-item">
+                <button
+                  onClick={this.state.displayGuestBook}
+                  className="btn btn-secondary"
+                  type="button"
+                  style={{ width: 250 }}
+                >
+                  Grab Journal
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -201,7 +215,14 @@ class App extends Component {
           <p>
             Made with FUN by{" "}
             <a href="https://thinkershine.herokuapp.com">Thinkershine</a> using
-            REACT LINK - HOSTED ON - HEROKU LINK
+            <a href="https://reactjs.org/" target="_blank">
+              {" "}
+              REACT
+            </a>{" "}
+            Hosting:{" "}
+            <a href="https://www.heroku.com/" target="_blank">
+              Heroku
+            </a>
           </p>
         </footer>
       </div>

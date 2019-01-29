@@ -337,7 +337,7 @@ class Coins extends Component {
     }
 
     return (
-      <div className="row">
+      <div id="coins" className="row">
         <div className="row container" style={{ marginTop: 20 }}>
           <ul className="nav" style={{ margin: "0 auto" }}>
             <li className="nav-item">
