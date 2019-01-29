@@ -175,6 +175,20 @@ const Resources = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <h2>Forms</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://github.com/hapijs/joi"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Joi - Schemas for JS Objects to Ensure Validation
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
