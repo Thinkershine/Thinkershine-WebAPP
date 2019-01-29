@@ -10,6 +10,7 @@ import Resources from "./components/resources";
 import Projects from "./components/projects";
 import Confetti from "./components/common/confetti";
 import NameForm from "./components/forms/nameForm";
+import Blog from "./components/blog";
 import "./App.css";
 
 const forms = () => {
@@ -151,6 +152,7 @@ class App extends Component {
           {/* Play Asteroids */}
           {/* Play GetRich */}
           <Switch>
+            <Route path="/blog" component={Blog} />
             <Route path="/projects" component={Projects} />
             <Route path="/skills" component={skills} />
             <Route path="/games" component={games} />

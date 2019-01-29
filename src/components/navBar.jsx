@@ -9,6 +9,11 @@ const NavBar = () => {
       </Link>
       <ul className="nav">
         <li className="nav-item">
+          <Link to="/blog" className="nav-link">
+            <button className="btn btn-primary">Blog</button>
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/projects" className="nav-link">
             <button className="btn btn-primary">Projects</button>
           </Link>
