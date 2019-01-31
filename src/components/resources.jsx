@@ -189,6 +189,20 @@ const Resources = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <h2>Single Page Applications</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://reacttraining.com/react-router/web/guides/quick-start"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React Router Dom - Quick Start
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
