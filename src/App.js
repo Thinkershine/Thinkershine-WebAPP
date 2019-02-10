@@ -12,6 +12,7 @@ import Confetti from "./components/common/confetti";
 import NameForm from "./components/forms/nameForm";
 import Blog from "./components/blog";
 import GuestBookForm from "./components/guestBookForm";
+import UnsplashBackground from "./components/unsplashBackground";
 import "./App.css";
 
 const forms = () => {
@@ -56,7 +57,12 @@ const games = () => {
 };
 
 const contact = () => {
-  return <h1>Contact</h1>;
+  return (
+    <div id="contact">
+      <h1>Contact</h1>
+      <UnsplashBackground />
+    </div>
+  );
 };
 
 class App extends Component {
@@ -120,7 +126,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div id="app" className="App">
         <header>
           <NavBar />
         </header>

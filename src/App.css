@@ -267,6 +267,45 @@ ul {
 
 #sidebar-sticky {
   position: fixed;
-  top: 25%;
+  top: 55%;
   left: 0;
+}
+
+/**** Full Background ****/
+
+#full-bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -1000;
+}
+
+#full-bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+/**** NavBar ****/
+
+#main-nav {
+  background-color: rgba(0, 0, 0, 0.35) !important;
+  height: 40px !important;
+}
+
+#brand-name {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 26px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+#brand-name:hover {
+  color: rgba(255, 255, 255, 0.75);
 }
