@@ -3,7 +3,7 @@ import Project from "./project";
 
 const Projects = () => {
   return (
-    <div>
+    <div id="projects">
       <h1>Projects</h1>
       <h2>Current Open-Source Projects</h2>
       <small>Well, Learning Projects...</small>
