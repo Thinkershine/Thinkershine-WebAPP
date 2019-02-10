@@ -190,6 +190,29 @@ const Resources = () => {
         </ul>
       </div>
       <div>
+        <h2>GIT</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="http://gitready.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GIT Ready
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
+              href="https://git-scm.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PRO GIT
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
         <h2>Single Page Applications</h2>
         <ul className="list-group">
           <li className="list-group-item">
