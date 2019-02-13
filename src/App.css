@@ -238,7 +238,6 @@ ul {
 /**** PROJECT ****/
 .project {
   border-radius: 5px;
-  background-color: rgba(218, 165, 32, 0.1);
 }
 
 /**** GuestBook Form ****/
@@ -319,4 +318,14 @@ ul {
 #forms {
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 3px;
+}
+
+h1,
+h2,
+h3,
+small,
+footer,
+.project p,
+.progressbar-title {
+  color: white !important;
 }
