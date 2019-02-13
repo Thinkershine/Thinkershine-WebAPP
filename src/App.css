@@ -297,11 +297,13 @@ ul {
 #main-nav {
   background-color: rgba(0, 0, 0, 0.35) !important;
   height: 40px !important;
+  padding: 0;
 }
 
 #brand-name {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 26px;
+  margin-left: 15px;
   color: rgba(255, 255, 255, 0.35);
 }
 
