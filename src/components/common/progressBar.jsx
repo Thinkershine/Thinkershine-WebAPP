@@ -30,7 +30,7 @@ class ProgressBar extends Component {
 
     return (
       <React.Fragment>
-        <p>
+        <p className="progressbar-title">
           {title} {levelToDisplay}
         </p>
         <div className={"progress w-100 bg-" + bgColor} style={{ height: 20 }}>

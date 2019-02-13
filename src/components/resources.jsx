@@ -226,6 +226,29 @@ const Resources = () => {
           </li>
         </ul>
       </div>
+      <div>
+        <h2>Games</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Games"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Game Development
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
+              href="https://colorlib.com/wp/javascript-engines-for-building-games/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              20 JS Engines
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
