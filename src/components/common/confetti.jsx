@@ -138,10 +138,11 @@ class Confetti extends Component {
     }
 
     context.font = "72px Courier";
+    context.fillStyle = "rgba(" + 255 + "," + 255 + "," + 255 + "," + 1 + ")";
     context.fillText(
       this.props.text,
       window.innerWidth / 3,
-      window.innerHeight / 3.5
+      window.innerHeight / 1.3
     );
 
     this.setState({ particles: localParticles, drawn: true }, () =>

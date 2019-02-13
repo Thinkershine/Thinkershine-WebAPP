@@ -12,13 +12,14 @@ import Confetti from "./components/common/confetti";
 import NameForm from "./components/forms/nameForm";
 import Blog from "./components/blog";
 import GuestBookForm from "./components/guestBookForm";
+import UnsplashBackground from "./components/unsplashBackground";
 import "./App.css";
 
 const forms = () => {
   return (
-    <React.Fragment>
+    <div id="forms">
       <NameForm />
-    </React.Fragment>
+    </div>
   );
 };
 
@@ -29,9 +30,9 @@ const home = () => {
       <Confetti
         text="What a Nice Day :)"
         particlesAmount={55}
-        animate={false}
+        animate={true}
         particleTypes={["circle"]} // "triangle", "line", "circle",
-        particleSize={25}
+        particleSize={5}
       />
       <div id="homeFiller" style={{ height: 550 }} />
     </React.Fragment>
@@ -44,7 +45,7 @@ const skills = () => {
 
 const games = () => {
   return (
-    <div className="games">
+    <div id="games">
       <h1>Games</h1>
 
       <div>
@@ -56,7 +57,11 @@ const games = () => {
 };
 
 const contact = () => {
-  return <h1>Contact</h1>;
+  return (
+    <div id="contact">
+      <h1>Contact</h1>
+    </div>
+  );
 };
 
 class App extends Component {
@@ -120,7 +125,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div id="app" className="App">
+        <UnsplashBackground />
         <header>
           <NavBar />
         </header>

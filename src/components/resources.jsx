@@ -2,7 +2,7 @@ import React from "react";
 
 const Resources = () => {
   return (
-    <div className="resources">
+    <div id="resources">
       <h1>Resources</h1>
 
       <div>
@@ -185,6 +185,29 @@ const Resources = () => {
               rel="noopener noreferrer"
             >
               Joi - Schemas for JS Objects to Ensure Validation
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2>GIT</h2>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a
+              href="http://gitready.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GIT Ready
+            </a>
+          </li>
+          <li className="list-group-item">
+            <a
+              href="https://git-scm.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              PRO GIT
             </a>
           </li>
         </ul>
