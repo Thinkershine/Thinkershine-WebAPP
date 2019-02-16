@@ -200,33 +200,3 @@ class Confetti extends Component {
 }
 
 export default Confetti;
-
-//
-
-//     function draw() {
-//
-//       }
-//       this.update();
-//     }
-//   };
-
-//   const update =() => {
-//       for (var i = 0; i < mp; i++) {
-//           var p = particles[i];
-//           p.y += Math.cos(p.d) + 1 + p.r / 2;
-//           p.x += Math.sin(0) * 2;
-
-//           if (p.x > W + 5 || p.x < -5 || p.y > H) {
-//             particles[i] = {
-//               x: Math.random() * W,
-//               y: -10,
-//               r: p.r,
-//               d: p.d,
-//               l: p.l,
-//               a: p.a,
-//               c: p.c,
-//               t: p.t
-//             };
-//           }
-//         }
-//   } setInterval(draw, 23);
